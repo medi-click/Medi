@@ -1,0 +1,49 @@
+{% comment %} {% extends 'main.html' %}
+{% load static %} 
+{% block content %}
+    {% csrf_token %}
+    {% if query %}
+    <h1>Posts containing "{{ query }}"</h1>
+           
+        {% for c in results %}
+            <a href="{{c.get_absolute_url}}"><h3>{{c.name}}</h3></a>
+            <h3>{{c.categories}}</h3>
+
+
+            {% empty %}
+            <h4>There are no results for your query.</h4>
+        {% endfor %}
+
+    {% else %}
+        <h2>NO QUERY  ERROR </h2>
+    {% endif %}
+{% endblock content %} {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<script>
+
+</script>
+
+
+
+<body>
+{% if query %}
+
+           
+   {% for c in results %}
+   <a href="{{c.set_absolute_url}}"><h3>{{c.name}}</h3></a>
+   {% endfor %}
+
+{% else %}
+    <h2>NO QUERY  ERROR </h2>
+{% endif %}
+</body>

@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% load static %} 
+{% block content %}
+        <!-- Cart Area Strat-->
+        <section class="cart-area pt-100 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="#">
+                            <div class="table-content table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-thumbnail">Images</th>
+                                            <th class="cart-product-name">Product</th>
+                                            <th class="product-price">Unit Price</th>
+                                            <th class="product-remove">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for items in item %}
+                                        <tr>
+                                            <td class="product-thumbnail"><a href="#"><img src={{items.product.image.url}}
+                                                        alt=""></a></td>
+                                            <td class="product-name"><a href="#">{{items.product.name}}</a></td>
+                                            <td class="product-price"><span class="amount">${{items.product.price}}</span></td>
+                                            
+                                                                            
+                                            <td><button data-product="{{items.product.id}}" data-action="add"
+                                            class="c-btn theme-btn-2 update-cart" type="submit">Add TO Cart</button>
+                                            <button data-product="{{items.product.id}}" data-action="remove1" class="c-btn theme-btn-2 wishlist-cart">Remove</button></td>
+                                        </tr>
+                                    {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Cart Area End-->
+
+{% endblock content%}
+            

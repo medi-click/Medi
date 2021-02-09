@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">
+    <title>Profile</title>
+</head>
+
+<body>
+    <!-- {% if user %} -->
+    <h1>Welcome to your profile</h1>
+    <a   href="{% url 'changepass' %}">Change Password</a><br>
+    <a  class ="mihir" href="{% url 'updateprofile' %}">Update profile</a><br>
+    <a href="{% url 'signout' %}">Logout</a><br>
+    <br><br>
+    <button>
+         <a href="{% url 'addstock' %}">Add Stock</a></button>
+    <!-- {% endif %} -->
+    
+
+
+</body>
+</html>

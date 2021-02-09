@@ -1,0 +1,9 @@
+<h1>Search Results</h1>
+
+<ul>
+  {% for product in b %}
+    <li>
+      {{ product.medicine_name }} <br> Price:{{product.price}} <br> Quantity available:{{product.quantity}}
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load static %} 
+{% block content %}
+        <!-- login Area Strat-->
+        <section class="login-area pt-100 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="basic-login">
+                            <h3 class="text-center mb-60">Signup From Here</h3>
+                            <form method='POST'action="#">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+							    <div class="input-group-append">
+								    <!--<span class="input-group-text">Username*</span>-->	
+                                </div>
+							    {{form.username}}
+						    </div>
+						    <div class="input-group mb-2">
+							    <div class="input-group-append">
+								    <!--<span class="input-group-text">Email*</span>-->
+							    </div>
+							    {{form.email}}
+						    </div>
+						    <div class="input-group mb-2">
+							    <div class="input-group-append">
+								    <!--<span class="input-group-text">Password</i></span>-->
+							    </div>
+							    {{form.password1}}
+						    </div>
+						    <div class="input-group mb-2">
+							    <div class="input-group-append">
+								    <!--<span class="input-group-text">Password Verify</i></span>-->
+							    </div>
+							    {{form.password2}}
+						    </div>
+                               <button class="c-btn theme-btn-2 w-100">Register Now</button>
+                               <div class="or-divide"><span>or</span></div>
+                               <button class="c-btn theme-btn w-100"><a href={% url 'login' %}>login Now</a></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- login Area End-->
+
+
+            
+    <script>
+						
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[3].placeholder='Username..';
+		form_fields[4].placeholder='Email..';
+		form_fields[5].placeholder='Enter password...';
+		form_fields[6].placeholder='Re-enter Password...';
+
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+	</script> 
+
+        
+    </body>
+
+{% endblock content %}

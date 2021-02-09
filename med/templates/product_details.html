@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <!-- shop-banner-area start -->
+    {% csrf_token %}
+        <section class="shop-banner-area pt-100 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="product-details-img mb-30">
+                            <div class="tab-content" id="myTabContent2">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel">
+                                    <div class="product-large-img">
+                                        <img src="{{products.image.url}}" alt=" ">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="product-details-wrapper mb-30">
+                            <div class="product-text">
+                                <h4>{{products.name}}</h4>
+                                <h5>{{products.manufacturered_by}}</h5>
+                                <span>${{products.price}}</span>
+                            </div>
+                            <div class="product-variant">
+                                <div class="product-action-details ">
+                                    <div class="product-details-action">
+                                        <form action="#">
+                                            <button data-product="{{products.id}}" data-action="remove" class="update-cart"><strong>-</strong></button>
+                                            <input type="text" value="{{items.products.quantity}}" disabled size="4" style="text-align: center;" />
+                                            <button data-product="{{products.id}}" data-action="add" class="update-cart"><strong>+</strong></button>
+                                            <div class="details-cart-btn">
+                                                <button data-product="{{products.id}}" data-action="add" class="c-btn red-btn upadte-cart" >add to cart <i class="far fa-plus"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a data-product="{{products.id}}" data-action="add" class="c-btn red-btn wishlist-cart">Wishlist<i class="far fa-heart"></i></a>
+                                    {% comment %} <a href="#"><i class="far fa-heart"></i></a>
+                                    <a href="#"><i class="far fa-search"></i></a>
+                                    <a href="#"><i class="far fa-exchange"></i></a> {% endcomment %}
+                                </div>
+                                <div class="product-02-list">
+                                    <ul>
+                                        <li>
+                                            <div class="pro-02-list-info f-left">
+                                                <span>Categories :</span>
+                                            </div>
+                                            <div class="pro-02-list-text">
+                                                <span>{{products.categories}}</span>
+                                            </div>
+                                        </li>
+                                           
+                                        <li>
+                                            <div class="pro-02-list-info f-left">
+                                                <span class="pro11">Share Now :</span>
+                                            </div>
+                                            <div class="pro-02-list-icon">
+                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>                               
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+            <!-- shop-banner-area end -->
+
+            <!-- product-desc-area start -->
+            <section class="product-desc-area pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 mb-30">
+                            <div class="bakix-details-tab">
+                                <ul class="nav text-center pb-30 mb-50" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="desc-tab" data-toggle="tab" href="#id-desc" role="tab"
+                                            aria-controls="home" aria-selected="true">Description </a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="id-desc" role="tabpanel" aria-labelledby="desc-tab">
+                                    <div class="row">
+                                        
+                                            <div class="col-md-12">
+                                                <div class="event-text">
+                                                    {{products.description}}
+                                                
+                                                </div>
+                                            </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            <!-- product-desc-area end -->
+{% endblock content %}
+           

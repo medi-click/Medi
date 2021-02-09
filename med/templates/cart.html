@@ -1,0 +1,96 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+
+<main>
+    <!-- Cart Area Strat-->
+    {% csrf_token %}
+    <section class="cart-area pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#">
+                        <div class="table-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">Images</th>
+                                        <th class="cart-product-name">Product</th>
+                                        <th class="product-price">Unit Price</th>
+                                        <th class="product-quantity">Quantity</th>
+                                        <th class="product-subtotal">Total</th>
+                                        <th class="product-remove">Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <a href="#"><img src="{{item.product.image.url}}" alt=""></a>
+                                        </td>
+                                        <td class="product-name"><a href="#">{{item.product.name}}</a></td>
+                                        <td class="product-price"><span class="amount">{{item.product.price|floatformat:2}}</span></td>
+                                        <td>
+                                            <p class="quantity"></p>
+                                            <!-- data-product="{{item.product.id}}" data-action="add" class="cart-plus-minus update-cart" -->
+                                            <button data-product="{{item.product.id}}" data-action="remove" class="update-cart"><strong>-</strong></button>
+                                            <input type="text" value="{{item.quantity}}" disabled size="4" style="text-align: center;" />
+                                            <button data-product="{{item.product.id}}" data-action="add" class="update-cart"><strong>+</strong></button>
+
+
+                                        </td>
+
+                                        <td class="product-subtotal"><span class="amount">Rs.{{item.get_total|floatformat:2}}</span></td>
+                                        <!-- <td><a class="c-btn theme-btn-2 update-cart" href=#>Remove</a></td> -->
+                                        <td><button data-product="{{item.product.id}}" data-action="remove1" class="c-btn theme-btn-2 update-cart"><strong>Remove</strong></button></td>
+                                    </tr>
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% comment %}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="coupon-all">
+                                    <div class="coupon">
+                                        <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
+                                        <button class="c-btn theme-btn-2" name="apply_coupon" type="submit">Apply
+                                                coupon</button>
+                                    </div>
+                                    <div class="coupon2">
+                                        <input class="c-btn theme-btn" name="update_cart" value="Update cart" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                        <div class="row">
+
+                            <div class="col-md-5 ml-auto">
+                                <div class="cart-page-total">
+                                    <h2>Cart totals</h2>
+                                    <ul class="mb-20">
+                                        <li>Items <span>{{order.get_cart_items}}</span></li>
+                                        <li>Total <span>{{order.get_cart_total|floatformat:2}}</span></li>
+                                    </ul>
+
+                                    <div>
+
+                                        {% if user.is_authenticated %}
+                                        <a class="c-btn theme-btn" href={% url 'checkout' %}>Proceed to checkout</a> {% else %}
+                                        <a class="c-btn theme-btn" href={% url 'login' %}>Proceed to checkout</a> {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Cart Area End-->
+
+
+</main>
+{% endblock content %}

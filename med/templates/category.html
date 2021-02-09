@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+{% for cats in cat %}
+
+<h3>{{cats}}</h3>
+{% endfor %}
+<div class="row">
+    {% for p in pro %}
+        <div class="col-xl-4 cl-lg-4 col-md-6">
+            <div class="product-wrapper text-center mb-45">
+                <div class="product-img pos-rel">
+                    <a  href={% url 'product_details' p.id %}>
+                        <img src="{{p.image.url}}">
+                    </a>
+                    <div class="product-action">
+                        <a data-product="{{p.id}}" data-action="add" class="c-btn wishlist-cart">Wishlist<i class="far fa-heart"></i></a>
+                        <a data-product="{{p.id}}" data-action="add" class="c-btn update-cart" >add to cart <i class="far fa-plus"></i></a>
+                    </div>
+                </div>
+                <div class="product-text">
+                    <h4><a href="product-details.html">{{p.name}}</a></h4>
+                    <span>${{p.price}}</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}
