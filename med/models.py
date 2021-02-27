@@ -34,18 +34,10 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('category', args=[self.pk])
-    # @property
-    # def get_product(self):
-    #     return Product.objects.filter(categories__title=self.title)
 
 
 class Product(models.Model):
-    # CATEGORY = (
-    #     ('Healthcare', 'Healthcare'),
-    #     ('Medicine', 'Medicine'),
-    #     ('COVID-19','COVID-19'),
-
-    # )
+    
     name = models.CharField(max_length=200, null=True)
     manufacturered_by = models.CharField(max_length=100, null=True)
     price = models.FloatField(null=True)
@@ -59,6 +51,8 @@ class Product(models.Model):
 
     def set_absolute_url(self):
        return reverse('product_details',args=[self.pk,])
+
+
 
 
 class Order(models.Model):

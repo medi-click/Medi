@@ -3,66 +3,66 @@
 {% block content %}
 
     <!-- checkout-area start -->
-        <section class="checkout-area pb-70">
-            <div class="container">
-               <form action = "" method ='POST'>
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="checkbox-form">
-                                <h3>Billing Details</h3>
-                                <div class="row">
-                                    
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
+<section class="checkout-area pb-70">
+    <div class="container">
+        <form action = "" method ='POST'>
+            {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkbox-form">
+                            <h3>Billing Details</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
                                             {{form.name}}
-                                            
-                                        </div>
+                                        
                                     </div>
+                                </div>
 
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
                                             {{form.email}} 
-                                            
-                                        </div>
+                                        
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
                                             {{form.phone}}
-                                        </div>
+                                        
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            {{form.address}}
-                                            
-                                        </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        {{form.address}}
+                                                                                    
                                     </div>
+                                </div>
                                        
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
                                             {{form.city}}
-                                            
-                                        </div>
+                                        
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
                                             {{form.state}}
-                                            
-                                        </div>
+                                        
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
                                             {{form.postcode}}
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                
                 </div>
-            <div class="col-lg-6">
-                <div class="your-order mb-30 ">
+                
+                <div class="col-lg-6">
+                    <div class="your-order mb-30 ">
                     <h3>Your order</h3>
                         <div class="your-order-table table-responsive">
                             <table>
@@ -79,7 +79,7 @@
                                                 {{item.product.name}}<strong class="product-quantity"> × {{item.quantity}}</strong>
                                             </td>
                                             <td class="product-total">
-                                                <span class="amount">${{item.product.price}}</span>
+                                                <span class="amount">${{item.get_total|floatformat:2}}</span>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -98,19 +98,16 @@
                                 </tfoot>
                             </table>
                         </div>
-
                         <div class="payment-method">
-                                        
                             <div class="order-button-payment mt-20">
-                                <input class="btn btn-success btn-block" type="submit" value=Submit>
+                                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
                             </div>
-                </form>           
                         </div>
-                    </div>                        
-                </div>                
-            </div>
+                    </div>
+                </div>
         </form>
-    </div>            
+    </div>
+                                      
 </section>
-            <!-- checkout-area end -->
+            
 {% endblock content %}

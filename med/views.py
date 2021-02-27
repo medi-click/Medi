@@ -34,14 +34,9 @@ def iregister(request):
         user.set_password(password)
         grp=Group.objects.get(name=Login_as)
         user.groups.add(grp) 
-        # if grp==customer:
-        #     customer.permissions.set[]
+        
 
         user.save()    
-        # if form.is_valid():
-        #     form.save()
-        #     messages.success(request, 'Account created successfully')
-        #     return redirect('register')
         
     else:
         form=UserCreationForm()
@@ -231,6 +226,7 @@ def loginPage(request):
 
 			if user is not None:
 				login(request, user)
+				request.session['username'] = username
 				return redirect('index')
 
 			else:
@@ -240,6 +236,10 @@ def loginPage(request):
 
 def logoutPage(request):
 	logout(request)
+	try:
+		del request.session['username']
+	except:
+		pass
 	return redirect('login')
 '''
 def reset(request):
@@ -252,7 +252,8 @@ def reset(request):
 
 def index_view(request):
 
-	if request.user.is_authenticated:
+	# if request.user.is_authenticated:
+	if request.session.has_key('username'):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer)
 		items = order.orderitem_set.all()
@@ -271,7 +272,7 @@ def index_view(request):
 	return render(request,'index.html',context)
 
 def product_details_view(request,pk):
-	if request.user.is_authenticated:
+	if request.session.has_key('username'):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer)
 		items = order.orderitem_set.all()
@@ -301,7 +302,7 @@ def about_view(request):
     return render(request,'about.html')
 
 def cart_view(request):
-	if request.user.is_authenticated:
+	if request.session.has_key('username'):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer)
 		items = order.orderitem_set.all()
@@ -314,7 +315,7 @@ def cart_view(request):
 	return render(request,'cart.html',context)
 
 def wishlist_view(request):
-	if request.user.is_authenticated:
+	if request.session.has_key('username'):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer)
 		item = order.wishitem_set.all()
@@ -328,7 +329,7 @@ def wishlist_view(request):
 	return render(request,'wishlist.html',context)
 
 def checkout_view(request):
-	if request.user.is_authenticated:
+	if request.session.has_key('username'):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer)
 		items = order.orderitem_set.all()
@@ -356,7 +357,7 @@ def checkout_view(request):
 	return render(request,'checkout.html',context)
 
 def paypal(request):
-	if request.user.is_authenticated:
+	if request.session.has_key('username'):
 		customer = request.user.customer
 		order, created = Order.objects.get_or_create(customer=customer)
 		items = order.orderitem_set.all()
@@ -396,6 +397,7 @@ def updateItem(request):
 	if orderItem.quantity <=0:
 		orderItem.delete()
 	return JsonResponse('Item was added', safe=False)
+
 
 def siteView(request):
 	return render(request,'site.html')

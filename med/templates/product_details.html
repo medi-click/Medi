@@ -24,8 +24,8 @@
                                 <h5>{{products.manufacturered_by}}</h5>
                                 <span>${{products.price}}</span>
                             </div>
-                            <div class="product-variant">
-                                <div class="product-action-details ">
+                            <div>
+                                {% comment %} <div class="product-action-details ">
                                     <div class="product-details-action">
                                         <form action="#">
                                             <button data-product="{{products.id}}" data-action="remove" class="update-cart"><strong>-</strong></button>
@@ -35,7 +35,8 @@
                                                 <button data-product="{{products.id}}" data-action="add" class="c-btn red-btn upadte-cart" >add to cart <i class="far fa-plus"></i></button>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div> {% endcomment %}
+                                    <a data-product="{{products.id}}" data-action="add" class="c-btn red-btn update-cart" >Add to cart <i class="far fa-plus"></i></a>
                                 </div>
                                 <div>
                                     <a data-product="{{products.id}}" data-action="add" class="c-btn red-btn wishlist-cart">Wishlist<i class="far fa-heart"></i></a>
